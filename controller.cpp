@@ -5,7 +5,7 @@ using namespace std;
 
 Controller::Controller() {
     model = new Model(24,16);
-    view = new View("Tetris", 512, 768);
+    view = new View("Tetris", 1024, 760);
 }
 
 Controller::~Controller() {
