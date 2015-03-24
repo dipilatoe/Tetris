@@ -30,6 +30,7 @@ public:
     // Print out the visible stuff in the grid
     void show(Model * model);
 private:
+	SDL_Surface* blockI = NULL;
 	Mix_Music* music = NULL;
     SDL_Window* window;
     SDL_Surface* screen;
