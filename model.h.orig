@@ -17,8 +17,13 @@ typedef struct {
     int y;
 } Coordinate;
 
+<<<<<<< HEAD
+=======
+typedef struct {
     Coordinate block[4];
     Coordinate location;
+} Shape;
+>>>>>>> 52a8409686b8fe04002df447daa13feac3a95715
 
 // The model manages the state of the game
 class Model {
@@ -51,8 +56,12 @@ public:
 private:
     int height, width;
     bool ended;
+<<<<<<< HEAD
     Tetrominoe shape;
+=======
+    Tetrominoe piece;
     Direction orientation;
+>>>>>>> 52a8409686b8fe04002df447daa13feac3a95715
 };
 
 #endif
