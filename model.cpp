@@ -10,9 +10,16 @@ Model::Model(int h, int w) {
     ended = false;
     height = h;
     width = w;
+<<<<<<< HEAD
     piece = (Tetrominoe)(time(0)%7);
     //pieces.push_back(piece);
     this->spawn(piece);
+=======
+    // Seed random number generator with time
+    srand(time(0));
+	// Spawn piece
+    this->spawn();
+>>>>>>> 15666118749690cf83be8488fd1337d86b1a4330
     // making a boolean grid to check where blocks are
     grid = new bool*[height+1];
     for (int i=0; i <= height; i++) {
@@ -38,6 +45,7 @@ bool Model::gameOver() {
     return false;
 }
 
+<<<<<<< HEAD
 void Model::randomPiece() {
     piece = (Tetrominoe)(time(0)%7);
     //pieces.push_back(piece);
@@ -119,72 +127,123 @@ void Model::spawn(Tetrominoe shape) {
         default:
             break;
     }
+=======
+// Create a new piece
+void Model::spawn() {
+    shape = (Tetrominoe)(rand()%7);
+	orientation = DOWN;
+	location.x = 7;
+	location.y = 0;
 }
 
-void Model::build(Tetrominoe shape) {
+Coordinate * Model::block() {
+	// All blocks by orientation and shape
+	// block[orientation][shape]
+	// Treat as a constant
+	static Coordinate blocks[4][7][4] = {
+	{ // UP
+		{ {0, 0}, {1, 0}, {2, 0}, {3, 0} }, // I
+		{ {0, 0}, {1, 0}, {0, 1}, {1, 1} }, // O
+		{ {0, 1}, {1, 1}, {2, 1}, {1, 0} }, // T
+		{ {0, 0}, {1, 0}, {1, 1}, {2, 1} }, // S
+		{ {0, 1}, {1, 1}, {1, 0}, {2, 0} }, // Z
+		{ {0, 1}, {0, 0}, {1, 0}, {2, 0} }, // J
+		{ {0, 0}, {1, 0}, {2, 0}, {2, 1} },
+	},
+	{ // DOWN
+		{ {0, 0}, {1, 0}, {2, 0}, {3, 0} }, // I
+		{ {0, 0}, {1, 0}, {0, 1}, {1, 1} }, // O
+		{ {0, 1}, {1, 1}, {2, 1}, {1, 0} }, // T
+		{ {0, 0}, {1, 0}, {1, 1}, {2, 1} }, // S
+		{ {0, 1}, {1, 1}, {1, 0}, {2, 0} }, // Z
+		{ {0, 1}, {0, 0}, {1, 0}, {2, 0} }, // J
+		{ {0, 0}, {1, 0}, {2, 0}, {2, 1} },
+	},
+	{ // LEFT
+		{ {0, 0}, {1, 0}, {2, 0}, {3, 0} }, // I
+		{ {0, 0}, {1, 0}, {0, 1}, {1, 1} }, // O
+		{ {0, 1}, {1, 1}, {2, 1}, {1, 0} }, // T
+		{ {0, 0}, {1, 0}, {1, 1}, {2, 1} }, // S
+		{ {0, 1}, {1, 1}, {1, 0}, {2, 0} }, // Z
+		{ {0, 1}, {0, 0}, {1, 0}, {2, 0} }, // J
+		{ {0, 0}, {1, 0}, {2, 0}, {2, 1} },
+	},
+	{ // RIGHT
+		{ {0, 0}, {1, 0}, {2, 0}, {3, 0} }, // I
+		{ {0, 0}, {1, 0}, {0, 1}, {1, 1} }, // O
+		{ {0, 1}, {1, 1}, {2, 1}, {1, 0} }, // T
+		{ {0, 0}, {1, 0}, {1, 1}, {2, 1} }, // S
+		{ {0, 1}, {1, 1}, {1, 0}, {2, 0} }, // Z
+		{ {0, 1}, {0, 0}, {1, 0}, {2, 0} }, // J
+		{ {0, 0}, {1, 0}, {2, 0}, {2, 1} },
+	},
+};
+
+    // Building blocks for Tetrominoes
+	return blocks[orientation][shape];
+>>>>>>> 15666118749690cf83be8488fd1337d86b1a4330
+}
+
+// This should build up the pile structure (and do collision detection)
+void Model::build() {
+	/*
     switch (shape) {
         case I:
-            block2.y = block1.y;
-            block3.y = block1.y;
-            block4.y = block1.y;
+            block[1].y = block[0].y;
+            block[2].y = block[0].y;
+            block[3].y = block[0].y;
             break;
         case O:
-            block2.y = block1.y;
-            block3.y = block1.y+1;
-            block4.y = block1.y+1;
+            block[1].y = block[0].y;
+            block[2].y = block[0].y+1;
+            block[3].y = block[0].y+1;
         case T:
-            block2.y = block1.y+1;
-            block3.y = block1.y+1;
-            block4.y = block1.y+1;
+            block[1].y = block[0].y+1;
+            block[2].y = block[0].y+1;
+            block[3].y = block[0].y+1;
         case S:
-            block2.y = block1.y;
-            block3.y = block1.y+1;
-            block4.y = block1.y+1;
+            block[1].y = block[0].y;
+            block[2].y = block[0].y+1;
+            block[3].y = block[0].y+1;
         case Z:
-            block2.y = block1.y;
-            block3.y = block1.y+1;
-            block4.y = block1.y+1;
+            block[1].y = block[0].y;
+            block[2].y = block[0].y+1;
+            block[3].y = block[0].y+1;
         case J:
-            block2.y = block1.y+1;
-            block3.y = block1.y+1;
-            block4.y = block1.y+1;
+            block[1].y = block[0].y+1;
+            block[2].y = block[0].y+1;
+            block[3].y = block[0].y+1;
         case L:
-            block2.y = block1.y+1;
-            block3.y = block1.y+1;
-            block4.y = block1.y+1;
+            block[1].y = block[0].y+1;
+            block[2].y = block[0].y+1;
+            block[3].y = block[0].y+1;
         default:
             break;
     }
+	*/
 }
 
 void Model::fall() {
-    block1.y++;
-    block2.y++;
-    block3.y++;
-    block4.y++;
-    if (block1.y >= 22) {
-        block1.y = 22;
-        build(piece);
-    }
+	if (location.y < 22) {
+	location.y++;
+	cout << location.y << endl;
+	} else {
+        build();
+	}
 }
 
 void Model::go(Direction d) {
     if (d == LEFT) {
-        if (block1.x == 0 || block2.x == 0 || block3.x == 0 || block4.x == 0) {
-        } else {
-            block1.x--;
-            block2.x--;
-            block3.x--;
-            block4.x--;
+        if (location.x > 0) {
+            location.x--;
         }
     }
     if (d == RIGHT) {
-        if (block1.x == 15 || block2.x == 15 || block3.x == 15 || block4.x == 15) {
-        } else {
-            block1.x++;
-            block2.x++;
-            block3.x++;
-            block4.x++;
+        if (location.x < 15) {
+            location.x++;
         }
     }
+	if (d == UP) {
+		orientation = (Direction)((((int)orientation) + 1) % 4);
+	}
 }

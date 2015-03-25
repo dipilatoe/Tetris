@@ -119,6 +119,7 @@ void View::show(Model * model) {
     // Probably call SDL_FillRect or SDL_BlitSurface a bunch here :-)
     
     // making four 32 by 32 pixel blocks
+<<<<<<< HEAD
 	
     SDL_Rect dest1, dest2, dest3, dest4;
     dest1.w = 32;
@@ -150,6 +151,18 @@ void View::show(Model * model) {
 	SDL_BlitSurface(blockI, NULL, screen, &dest3);
 	SDL_BlitSurface(blockI, NULL, screen, &dest4);
 	
+=======
+    SDL_Rect dest[4];
+	Coordinate * block = model->block();
+	for (int i = 0; i < 4; i++) {
+		dest[i].w = 32;
+		dest[i].h = 32;
+		dest[i].x = (block[i].x + model->location.x) * 32;
+		dest[i].y = (block[i].y + model->location.y) * 32;
+		SDL_FillRect(screen, &dest[i], SDL_MapRGB(screen->format, 0x80, 0x00, 0x00));
+	}
+
+>>>>>>> 15666118749690cf83be8488fd1337d86b1a4330
     SDL_UpdateWindowSurface(window);
    
 }
