@@ -145,7 +145,10 @@ void View::show(Model * model) {
     SDL_FillRect(screen, &dest3, SDL_MapRGB(screen->format, 0x80, 0x00, 0x00));
     SDL_FillRect(screen, &dest4, SDL_MapRGB(screen->format, 0x80, 0x00, 0x00));
     
-	SDL_BlitSurface(blockI, NULL, screen, NULL);
+	SDL_BlitSurface(blockI, NULL, screen, &dest1);
+	SDL_BlitSurface(blockI, NULL, screen, &dest2);
+	SDL_BlitSurface(blockI, NULL, screen, &dest3);
+	SDL_BlitSurface(blockI, NULL, screen, &dest4);
 	
     SDL_UpdateWindowSurface(window);
    
