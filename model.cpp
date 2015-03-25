@@ -10,9 +10,10 @@ Model::Model(int h, int w) {
     ended = false;
     height = h;
     width = w;
-    piece = (Tetrominoe)(time(0)%7);
+	// variable piece does not exist anymore
+//    piece = (Tetrominoe)(time(0)%7);
     //pieces.push_back(piece);
-    this->spawn(piece);
+//    this->spawn(piece);
     // making a boolean grid to check where blocks are
     for (int i=0; i<=height; i++) {
         for (int j=0; j<width; j++) {
@@ -33,11 +34,12 @@ bool Model::gameOver() {
 }
 
 void Model::randomPiece() {
-    piece = (Tetrominoe)(time(0)%7);
+	//piece does not exist anymore
+//    piece = (Tetrominoe)(time(0)%7);
     //pieces.push_back(piece);
-    this->spawn(piece);
+//    this->spawn(piece);
 }
-
+/* Replace old variables block1,2,3,4
 void Model::spawn(Tetrominoe shape) {
     switch (shape) {
         case I:
@@ -114,7 +116,8 @@ void Model::spawn(Tetrominoe shape) {
             break;
     }
 }
-
+*/
+/* Replace old variables block1,2,3,4
 void Model::build(Tetrominoe shape) {
     switch (shape) {
         case I:
@@ -150,7 +153,8 @@ void Model::build(Tetrominoe shape) {
             break;
     }
 }
-
+*/
+/* Replace old variables block1,2,3,4
 void Model::fall() {
     if (grid[block1.x][block1.y]) {
         // adjust boolean grid here
@@ -162,7 +166,8 @@ void Model::fall() {
         block4.y++;
     }
 }
-
+*/
+/* Replace old variables block1,2,3,4
 void Model::go(Direction d) {
     if (d == LEFT) {
         if (block1.x == 0 || block2.x == 0 || block3.x == 0 || block4.x == 0) {
@@ -192,3 +197,4 @@ void Model::go(Direction d) {
         }
     }
 }
+*/

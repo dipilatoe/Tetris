@@ -52,7 +52,6 @@ private:
     int height, width;
     bool ended;
     Tetrominoe shape;
-    Direction orientation;
 };
 
 #endif
