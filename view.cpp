@@ -314,8 +314,7 @@ void View::show(Model * model) {
 	for (int x = 0; x < 4; x++) {
 		SDL_BlitSurface(blockIMG, NULL, screen, &dest[x]);
 	}
-	
-    
+
     for (int i=0; i<20; i++) {
         for (int j=0; j<10; j++) {
             switch (model->colorGrid[i][j]) {
