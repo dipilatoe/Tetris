@@ -14,7 +14,7 @@ Controller::Controller() {
         fileFailedOpen = true;
     }
     // Decrease the update time interval to make game faster
-    milliSeconds = 200;
+    milliSeconds = 250;
 }
 
 Controller::~Controller() {
@@ -74,6 +74,9 @@ void Controller::loop() {
                     case SDLK_p:
                         paused = true;
                         break;
+                    case SDLK_SPACE:
+                        model->instantFall();
+                        break;
                     default:
                         break;
                     }
@@ -84,7 +87,7 @@ void Controller::loop() {
         }
     }
     if (!fileFailedOpen) {
-        scoresfile << endl << "Rows completed: " << model->score << "\t"
+        scoresfile << endl << "Rows completed: " << model->rowCount << "\t"
         << "(milli seconds between Tetrominoes: " << milliSeconds << ")" << endl;
     }
     // TODO: show something nice?
